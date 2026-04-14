@@ -7,5 +7,9 @@
 
         public decimal Monto { get; set; }
 
+        public int EstanciaId { get; set; } // Propiedad Relacional
+
+        public Estancia Estancia { get; set; } // Propiedad Navegacional
+
     }
 }

@@ -12,6 +12,9 @@ namespace _2026_1C_Estacionamiento.Models
 
         public bool Principal { get; set; }
 
+        public int ClienteId { get; set; } // Propiedad Relacional
+
+        public Cliente Cliente { get; set; } // Propiedad Navegacional
 
         public TipoTelefono Tipo { get; set; }
     }

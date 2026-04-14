@@ -6,9 +6,7 @@
         public int Patente { get; set; }
         public string Marca { get; set; }
 
-
         public string Color { get; set; }
-
 
         public int AnioFabricacion { get; set; } = DateTime.Now.Year;
     }
