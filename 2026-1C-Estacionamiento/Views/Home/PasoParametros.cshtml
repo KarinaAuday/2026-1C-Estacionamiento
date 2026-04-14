@@ -1,0 +1,11 @@
+﻿@model Persona
+<p>El numero recibido en esta vista es @Model</p>
+<p>Los parametros que recibi por ViewBag son @ViewBag.Numero , @ViewBag.Nombre ,@ViewBag.Apellido </p>
+@{
+    foreach (var nombre in ViewBag.ListaNombres)
+    {
+        <p>El numero de la lista es: @nombre</p>
+    }
+}
+<p> La persona es @Model.Apellido</p>
+<p>La persona es @ViewBag.Persona.Nombre</p>

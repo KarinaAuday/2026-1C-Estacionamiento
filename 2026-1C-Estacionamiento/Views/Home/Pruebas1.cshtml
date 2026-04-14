@@ -1,0 +1,41 @@
+﻿<h1>En esta pagina vamos a ver algunos ejemplos de Vista y Controlador</h1>
+@{
+    int numero = 5;
+    string texto = "Hola Mundo";
+}
+
+<div class="align-items-start">
+    <h1>Ejemplo de variables</h1>
+    <p>El numero es: @numero</p>
+    <p>El texto es: @texto</p>
+</div>
+
+@{
+    <p><strong>MUESTRO NUMEROS EN UN IF</strong></p>
+    if (numero > 3)
+    {
+        <p>El numero es mayor a 3</p>
+    }
+    else
+    {
+        <p>El numero es menor o igual a 3</p>
+    }
+}
+
+<p> Ejemplo de Listas</p>
+@{
+    List<string> nombres = new List<string>() { "Juan", "Maria", "Pedro" };
+    foreach (var nombre in nombres)
+    {
+        <p>El nombre es: @nombre</p>
+    }
+
+    List<int> numeros = new List<int>() { 1, 2, 3, 4, 5 };
+    var numerosPares = numeros.Where(n => n % 2 == 0);
+    <p><strong> Numeros Pares: </strong></p>
+    foreach (var num in numerosPares)
+    {
+        <p>El numero par es: @num</p>
+    }
+}
+
