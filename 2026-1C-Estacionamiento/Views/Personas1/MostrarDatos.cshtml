@@ -1,0 +1,15 @@
+﻿@model Persona
+
+<div>
+    @if (Model != null)
+    {
+        <h2>Datos de la Persona</h2>
+        <p><strong>Nombre:</strong> @Model.Nombre</p>
+        <p><strong>Apellido:</strong> @Model.Apellido</p>
+    }
+    else
+    {
+        <p>No se ha recibido ninguna persona.</p>
+    }
+
+</div>

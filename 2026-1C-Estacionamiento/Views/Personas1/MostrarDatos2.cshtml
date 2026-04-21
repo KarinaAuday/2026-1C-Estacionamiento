@@ -1,0 +1,15 @@
+﻿
+<div>
+    @if (!String.IsNullOrEmpty(ViewBag.Nombre))
+    {
+        <h2>Datos de la Persona</h2>
+        <p><strong>Nombre:</strong> @ViewBag.Nombre</p>
+        <p><strong>Apellido:</strong> @ViewBag.Apellido</p>
+        <p>Nombre Completo : @ViewBag.NombreCompleto</p>
+    }
+    else
+    {
+        <p>No se ha recibido ninguna persona.</p>
+    }
+
+</div>

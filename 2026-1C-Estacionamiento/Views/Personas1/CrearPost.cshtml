@@ -1,0 +1,17 @@
+﻿<h1>Crear Persona con formulario Post</h1>
+<form method="post" action="@Url.Action("CrearPersona2", "Personas1")">
+    <div class="form-group">
+        <label>Nombre:</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" required>
+        <label>Apellido:</label>
+        <input type="text" class="form-control" id="apellido" name="apellido" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+
+</form>
+
+@section Scripts {
+   @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+   }
+}
