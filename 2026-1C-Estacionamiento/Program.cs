@@ -1,7 +1,14 @@
+using _2026_1C_Estacionamiento.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Configuro la base de Datos
+builder.Services.AddDbContext<EstacionamientoContext>
+    (options => options.UseInMemoryDatabase("EstacionamientoDB"));
 
 var app = builder.Build();
 
