@@ -1,0 +1,11 @@
+﻿@model List<Cliente>
+@{
+    ViewData["Title"] = "Buscar Cliente";
+}
+<h1>Resultado de la busqueda</h1>
+<ul>
+    @foreach (var cliente in Model)
+    {
+        <li>@cliente.Nombre @cliente.Apellido - @cliente.Email</li>
+    }
+</ul>
