@@ -1,53 +1,75 @@
-﻿@model IEnumerable<_2026_1C_Estacionamiento.Models.ClienteVehiculo>
+﻿@model IEnumerable<_2026_1C_Estacionamiento.Models.Cliente>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Clientes y Vehículos";
 }
 
-<h1>Index</h1>
+<h1>Gestión de Clientes y Vehículos</h1>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Mensaje"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-controller="Clientes" asp-action="Create" class="btn btn-primary">Crear Nuevo Cliente</a>
 </p>
-<table class="table">
+
+<table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ResponsablePrincipal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Activo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vehiculo)
-            </th>
-            <th></th>
+            <th>Cliente</th>
+            <th>DNI</th>
+            <th>CUIT</th>
+            <th>Vehículos Asociados</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ResponsablePrincipal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Activo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cliente.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vehiculo.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>
+                    <strong>@cliente.Nombre @cliente.Apellido</strong><br />
+                    <small class="text-muted">@cliente.Email</small>
+                </td>
+                <td>@cliente.Dni</td>
+                <td>@cliente.Cuit</td>
+                <td>
+                    @if (cliente.ClienteVehiculos != null && cliente.ClienteVehiculos.Any(cv => cv.Activo))
+                    {
+                        <ul class="list-unstyled mb-0">
+                            @foreach (var cv in cliente.ClienteVehiculos.Where(cv => cv.Activo))
+                            {
+                                <li>
+                                    <span class="badge bg-secondary">@cv.Vehiculo.Patente</span>
+                                    @cv.Vehiculo.Marca - @cv.Vehiculo.Color
+                                    <small class="text-muted">(@cv.ResponsablePrincipal)</small>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Sin vehículos asociados</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="EditarVehiculos" asp-route-id="@cliente.Id" class="btn btn-sm btn-warning">
+                        <i class="bi bi-pencil"></i> Editar Vehículos
+                    </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No hay clientes registrados. <a asp-controller="Clientes" asp-action="Create">Crear el primero</a>
+    </div>
+}

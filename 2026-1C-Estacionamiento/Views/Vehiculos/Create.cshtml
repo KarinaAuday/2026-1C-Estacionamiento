@@ -4,8 +4,18 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Crear Vehículo</h1>
 
+    @* Mostrar mensaje si viene de crear cliente *@
+    @if (ViewBag.DesdeCliente != null && ViewBag.DesdeCliente)
+    {
+        <div class="alert alert-info">
+            <strong>Asociando vehículo para:</strong> @ViewBag.ClienteNombre
+        </div>
+    }
+
+    <h4>Vehículo</h4>
+    <hr />
 <h4>Vehiculo</h4>
 <hr />
 <div class="row">

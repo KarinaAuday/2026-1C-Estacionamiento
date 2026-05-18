@@ -7,5 +7,10 @@
         public List<Telefono> Telefonos { get; set; } 
 
         public Direccion Direccion { get; set; }
+
+
+
+        // Propiedad de navegación para relación muchos a muchos
+        public List<ClienteVehiculo> ClienteVehiculos { get; set; }
     }
 }

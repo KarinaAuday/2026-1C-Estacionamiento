@@ -60,7 +60,13 @@ namespace _2026_1C_Estacionamiento.Controllers
             {
                 _context.Add(cliente);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                // Guardar el ClienteId en TempData para usarlo en VehiculosController
+                TempData["ClienteId"] = cliente.Id;
+                TempData["ClienteNombre"] = $"{cliente.Nombre} {cliente.Apellido}";
+                TempData["VieneDeCliente"] = true; // Indicador para saber que venimos de la creación de un cliente
+                // Redirigir a crear vehículo en lugar de Index
+                return RedirectToAction("Create", "Vehiculos");
             }
             return View(cliente);
         }

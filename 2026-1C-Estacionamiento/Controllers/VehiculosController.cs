@@ -46,6 +46,22 @@ namespace _2026_1C_Estacionamiento.Controllers
         // GET: Vehiculos/Create
         public IActionResult Create()
         {
+            if ((bool)(TempData["VieneDeCliente"] = true))
+            {
+                // Verificar si viene de crear un cliente
+                if (TempData["ClienteId"] != null)
+                {
+                    ViewBag.ClienteId = TempData["ClienteId"];
+                    ViewBag.ClienteNombre = TempData["ClienteNombre"];
+                    ViewBag.DesdeCliente = true; // Flag para mostrar mensaje en la vista
+
+                    // Mantener en TempData para el POST
+                    TempData.Keep("ClienteId");
+                    TempData.Keep("ClienteNombre");
+                }
+
+            }
+            
             return View();
         }
 
@@ -60,7 +76,39 @@ namespace _2026_1C_Estacionamiento.Controllers
             {
                 _context.Add(vehiculo);
                 await _context.SaveChangesAsync();
+                // Verificar si viene de crear un cliente
+                if (TempData["ClienteId"] != null  && (bool)TempData["VieneDeCliente"])
+                {
+                    int clienteId = (int)TempData["ClienteId"];
+
+                    // Crear la relación ClienteVehiculo
+                    var clienteVehiculo = new ClienteVehiculo
+                    {
+                        ClienteId = clienteId,
+                        VehiculoId = vehiculo.Id,
+                        ResponsablePrincipal = "Titular", // O lo que necesites por defecto
+                        Activo = true
+                    };
+
+                    _context.Add(clienteVehiculo);
+                    await _context.SaveChangesAsync();
+
+                    TempData["Mensaje"] = "Cliente y vehículo asociados correctamente.";
+                }
+                TempData.Remove("VieneDeCliente"); // Limpiar el flag después de usarlo
+                TempData.Remove("ClienteId"); // Limpiar el ClienteId después de usarlo
+                TempData.Remove("ClienteNombre"); // Limpiar el ClienteNombre después de usarlo
                 return RedirectToAction(nameof(Index));
+
+            }
+            // Si hay error, mantener el ClienteId en ViewBag para la vista
+            if (TempData["ClienteId"] != null)
+            {
+                ViewBag.ClienteId = TempData["ClienteId"];
+                ViewBag.ClienteNombre = TempData["ClienteNombre"];
+                ViewBag.DesdeCliente = true;
+                TempData.Keep("ClienteId");
+                TempData.Keep("ClienteNombre");
             }
             return View(vehiculo);
         }
