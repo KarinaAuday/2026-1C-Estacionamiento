@@ -1,5 +1,6 @@
 using _2026_1C_Estacionamiento.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //Configuro la base de Datos
+//builder.Services.AddDbContext<EstacionamientoContext>
+//    (options => options.UseInMemoryDatabase("EstacionamientoDB"));
+
 builder.Services.AddDbContext<EstacionamientoContext>
-    (options => options.UseInMemoryDatabase("EstacionamientoDB"));
+    (options => options.UseSqlServer(builder.Configuration.GetConnectionString("EstacionamientoDBCS")));
+
+
 
 var app = builder.Build();
 

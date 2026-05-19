@@ -12,11 +12,11 @@
 </head>
 <body>
     <header>
-       @*  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        @*  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
        *@     
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  bg-gradient border-bottom box-shadow mb-3 nav-k">
-       <div class="container-fluid">
-                       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -29,15 +29,15 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                       
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"  asp-action="Pruebas1">Pruebas</a>
+
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Pruebas1">Pruebas</a>
                         </li>
                         <li class="nav-item">
-                       
-                            <a class="nav-link text-dark" asp-area="" asp-controller ="Vehiculos" asp-action="Index">Vehiculos</a>
+
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Vehiculos" asp-action="Index">Vehiculos</a>
                         </li>
                         <li class="nav-item">
-                       
+
                             <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
                         </li>
                         <li class="nav-item">
@@ -60,6 +60,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
+            <a asp-action="InicializarBD" asp-controller="PreCargaDB" class="btn btn-primary">Inicializar Base de Datos</a>
+
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

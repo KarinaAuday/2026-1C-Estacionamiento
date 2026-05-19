@@ -16,6 +16,12 @@ namespace _2026_1C_Estacionamiento.Data
         public DbSet<_2026_1C_Estacionamiento.Models.Cliente> Cliente { get; set; }
         public DbSet<_2026_1C_Estacionamiento.Models.Empleado> Empleado { get; set; }
         public DbSet<_2026_1C_Estacionamiento.Models.Telefono> Telefono { get; set; }
+
+        public DbSet<Estancia> Estancias { get; set; }
+
+        public DbSet<Pago> Pagos { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -31,9 +37,9 @@ namespace _2026_1C_Estacionamiento.Data
                 .WithMany(v => v.ClienteVehiculos)
                 .HasForeignKey(cv => cv.VehiculoId);
 
-            // Índice único compuesto para evitar duplicados
-            modelBuilder.Entity<ClienteVehiculo>()
-                .HasIndex(cv => new { cv.ClienteId, cv.VehiculoId });
+        //    // Índice único compuesto para evitar duplicados
+        //    modelBuilder.Entity<ClienteVehiculo>()
+        //        .HasIndex(cv => new { cv.ClienteId, cv.VehiculoId });
         }
     }
 }

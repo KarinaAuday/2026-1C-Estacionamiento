@@ -7,3 +7,9 @@
     <img src="~/img/parkingFondo.jpeg" alt="ParkingFondo" />
 
 </div>
+@if (TempData["PrecargaOK"] != null)
+{
+    <div class="alert">
+        @TempData["PrecargaOK"]
+    </div>
+}
